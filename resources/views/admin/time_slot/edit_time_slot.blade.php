@@ -15,6 +15,14 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="form-group">
+                                            <label>SL No. <span class="text-danger">*</span></label>
+                                            <div class="controls">
+                                                <input type="number" name="display_order" value="{{ $editData['display_order'] }}" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
                                             <label>Game Start Time <span class="text-danger">*</span></label>
                                             <div class="controls">
                                                 <input type="time" name="start_time" value="{{ $editData['start_time'] }}" class="form-control" required="">

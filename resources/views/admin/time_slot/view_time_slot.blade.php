@@ -24,7 +24,7 @@
                                     <tbody>
                                         @foreach($allData as $key => $time )
                                         <tr>
-                                            <td>{{$key+1}}</td>
+                                            <td>{{$time->display_order}}</td>
                                             <td>{{$time->start_time}}</td>
                                             <td>{{$time->end_time}}</td>
                                             <td>

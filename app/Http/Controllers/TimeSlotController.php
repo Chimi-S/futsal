@@ -9,7 +9,7 @@ class TimeSlotController extends Controller
 {
     public function TimeSlotView()
     {
-        $data['allData'] = Timeslot::where('status', '1')->get();
+        $data['allData'] = Timeslot::orderBy('display_order')->where('status', '1')->get();
         return view('admin.time_slot.view_time_slot', $data);
     }
     public function TimeSlotAdd()
@@ -21,11 +21,13 @@ class TimeSlotController extends Controller
         $validatedData = $request->validate([
             'start_time' => 'required',
             'end_time' => 'required',
+            'display_order' => 'required'
         ]);
         $status = 1;
         $data = new Timeslot();
         $data->start_time = date("g:i a", strtotime($request->start_time));
         $data->end_time = date("g:i a", strtotime($request->end_time));
+        $data->display_order = $request->display_order;
         $data->status = $status;
         $data->save();
 
@@ -44,7 +46,8 @@ class TimeSlotController extends Controller
         $editData = [
             'id' => $data->id,
             'start_time' => date("H:i", strtotime($data->start_time)),
-            'end_time' => date("H:i", strtotime($data->end_time))
+            'end_time' => date("H:i", strtotime($data->end_time)),
+            'display_order' => $data->display_order
         ];
         return view('admin.time_slot.edit_time_slot', compact('editData'));
     }
@@ -55,6 +58,7 @@ class TimeSlotController extends Controller
         $data = Timeslot::find($id);
         $data->start_time = date("g:i a", strtotime($request->start_time));
         $data->end_time = date("g:i a", strtotime($request->end_time));
+        $data->display_order = $request->display_order;
         $data->status = $status;
         $data->save();
 

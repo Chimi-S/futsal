@@ -1,3 +1,7 @@
+@php
+$prefix = Request::route()->getPrefix();
+$route = Route::current()->getName();
+@endphp
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -20,8 +24,8 @@
                 </a>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li class="treeview {{ ($prefix == '/timeslot') ? 'active':'' }} ">
+                <a href=" #">
                     <i data-feather="clock"></i>
                     <span>Time Slot</span>
                     <span class="pull-right-container">
@@ -33,7 +37,7 @@
                     <li><a href="{{route('time_slot.view')}}"><i class="ti-more"></i>View</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview {{ ($prefix == '/pricing') ? 'active':'' }}">
                 <a href="#">
                     <i data-feather="dollar-sign"></i> <span>Pricing</span>
                     <span class="pull-right-container">
@@ -45,7 +49,7 @@
                     <li><a href="{{route('pricing.view')}}"><i class="ti-more"></i>View</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview {{ ($prefix == '/bank-account-detail') ? 'active':'' }}">
                 <a href="#">
                     <i data-feather="file-minus"></i> <span>Bank Account Details</span>
                     <span class="pull-right-container">

@@ -28,49 +28,23 @@
 </head>
 
 <body>
+    @php
+
+    $route = Route::current()->getName();
+
+    @endphp
+    @include('user.body.top-header')
+
     @include('user.body.navigation')
+
     <main id="main">
-        @include('user.body.slider')
-        <section class="p-4">
-            <div class="section-title">
-                <h4>Booking for 27 December 2021 to 02 January 2022</h4>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
 
-            <!-- </div>
-            </div> -->
+        @includeWhen($route == 'welcome','user.body.slider')
 
-            <!-- </div> -->
-        </section>
+        @include('user.booked_info.booked_info')
+
     </main>
+
     @include('user.body.footer')
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

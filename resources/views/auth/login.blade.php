@@ -31,11 +31,10 @@
                     {{ __('Forgot your password?') }}
                 </a>
                 @endif
-
             </div>
 
             <div class="flex items-center justify-between mt-4">
-                @if (Route::has('register'))
+                @if (Route::has('register') && !request()->routeIs('admin'))
                 <a class="text-sm hover:bg-gray-50 text-blue-600 font-bold py-1 px-2 rounded" href="{{ route('register') }}">
                     Create account
                 </a>

@@ -17,5 +17,6 @@ class Timeslot extends Model
     protected $fillable = [
         'start_time',
         'end_time',
+        'display_order'
     ];
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pricing;
+use App\Models\Timeslot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PricingController extends Controller
 {
@@ -60,8 +62,6 @@ class PricingController extends Controller
         return redirect()->route('pricing.view')->with($notification);
     }
 
-
-
     public function PricingDelete($id)
     {
         $user = Pricing::find($id);
@@ -73,5 +73,12 @@ class PricingController extends Controller
         );
 
         return redirect()->route('pricing.view')->with($notification);
+    }
+
+    public function PricingPromo()
+    {
+        $data['allData'] = DB::select("SELECT ROUND(pricing,0) AS pricing,time,type FROM pricing ORDER BY type DESC");
+        $data['timeSlot'] = Timeslot::orderBy('display_order')->where('status', '1')->get();
+        return view('user.pricing_and_promo.view_pricingpromo', $data);
     }
 }

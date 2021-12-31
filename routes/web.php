@@ -21,13 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [BookingController::class, 'GetBookedInfo'])->name('welcome');
 
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
-    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::get('/login', [AdminController::class, 'loginForm'])->name('admin');
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
@@ -91,11 +89,7 @@ Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.lo
 
 //User
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('user.index');
-})->name('dashboard');
-
-
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', [BookingController::class, 'GetBookedInfoForAuthUser'])->name('dashboard');
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
 
@@ -103,10 +97,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('booking')->group(function () {
 
-        Route::get('/view', [BookingController::class, 'BookingView'])->name('booking.view');
-
         Route::get('/add', [BookingController::class, 'BookingAdd'])->name('booking.add');
+        Route::get('/add/{id}/{date}', [BookingController::class, 'BookingEdit'])->name('booking.edit');
 
         Route::post('/store', [BookingController::class, 'BookingStore'])->name('booking.store');
     });
 });
+
+Route::get('/booking-chart', [BookingController::class, 'BookingView'])->name('booking.view');
+
+Route::get('/pricing-and-promo', [PricingController::class, 'PricingPromo'])->name('pricing');

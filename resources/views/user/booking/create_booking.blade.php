@@ -1,9 +1,11 @@
 @extends('user.user_master')
 @section('user')
-<section id="about" class="about">
+@php
+$editData = DB::table('bank_account_details')->get();
+@endphp
+<section id="about" class="about mt-2">
     <div class="container" data-aos="fade-up">
         <div class="row no-gutters p-4">
-
             <!-- MultiStep Form -->
             <form id="regForm" method="post" action="{{route('booking.store')}}">
                 @csrf
@@ -26,24 +28,23 @@
 
                 </div>
                 <div class="tab"><strong> Date & Time</strong>
+
                     <div class="my-2">
                         <label for="date" class="form-label">Date<span class="text-danger">*</span></label>
-                        <input type="date" name="date" class="form-control" id="date" required="">
+                        <input type="date" name="date" value="{{request()->route('date')}}" class="form-control form-control-sm" id="date" required="">
                     </div>
                     <div class="mb-2">
                         <label for="date" class="form-label">Time<span class="text-danger">*</span></label>
+
                         <select class="form-select" multiple aria-label="multiple select example" name="time_slot_id">
-                            <option selected>which time suit you best?</option>
+                            <option selected disabled>which time suit you best?</option>
                             @foreach($allData as $key => $time )
-                            <option value="{{$time->id}}">{{$time->start_time}}-{{$time->start_time}}</option>
+                            <option {{(request()->route('id')) == $time->id ? "selected" : ""}} value="{{ $time->id }}">{{$time->start_time}}-{{$time->end_time}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="tab"><strong> Payment </strong>
-                    @php
-                    $editData = DB::table('bank_account_details')->get();
-                    @endphp
                     <div class="my-2">
                         <h5 class="text-center">{{$editData[0]->account_number}}</h5>
                         <img id="showImage" class="rounded mx-auto d-block" src="{{ (!empty($editData[0]->qr_code_photo_path))? url('upload/qr_code_images/'.$editData[0]->qr_code_photo_path):url('upload/no_image.png') }}" style="width: 25%; height: 25%; border: 1px solid #000000;">
@@ -130,6 +131,8 @@
         if (currentTab >= x.length) {
             // ... the form gets submitted:
             document.getElementById("regForm").submit();
+            document.getElementById("nextBtn").disabled = true
+            document.getElementById("nextBtn").style.cursor = "not-allowed"
             return false;
         }
         // Otherwise, display the correct tab:

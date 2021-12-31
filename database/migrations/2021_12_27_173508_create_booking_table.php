@@ -20,6 +20,8 @@ class CreateBookingTable extends Migration
             $table->char('time_slot_id')->index();
             $table->timestamps();
 
+            $table->unique(['date', 'time_slot_id']);
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('time_slot_id')->references('id')->on('time_slot');
         });

@@ -1,32 +1,26 @@
+@php
+$route = Route::current()->getName();
+@endphp
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
         <div class="logo me-auto mr-auto p-2">
             <a href="{{ route('welcome')}}"><img src="{{asset('userbackend/panel/assets/img/logo.png')}}" alt="" class="img-fluid" ;></a>
         </div>
 
-        <nav id="navbar" class="navbar ml-auto">
+        <nav id="navbar" class="navbar">
             @if (Route::has('login'))
             <ul>
-                @auth
-                <li><a class="nav-link scrollto active" href="{{ route('welcome') }}">HOME</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('welcome') }}">PRICING & PROMO</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('welcome') }}">BOOKING CHART</a></li>
-                <li class="dropdown">
-                    <a href="#">
-                        <img src="{{(!empty(Auth::user()->profile_photo_path)) ? url('upload/user_images/'.Auth::user()->profile_photo_path) : url('upload/no_image.png')}}" alt="{{ Auth::user()->name }}" style="width:20%;" class="bg-info rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu animated flipInX">
-                        <li class="user-body">
-                            <a class="dropdown-item" href=""> Profile</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('user.logout')}}"> Logout</a>
-                        </li>
-                    </ul>
+                <li><a class="nav-link scrollto {{ ($route == 'welcome') ? 'active':'' }}" href="{{ route('welcome') }}">HOME</a>
                 </li>
+                <li><a class="nav-link scrollto {{ ($route == 'booking.add') ? 'active':'' }} " href="{{ route('booking.add') }}">BOOK NOW</a>
+                </li>
+                @auth
+                <li><a class="nav-link scrollto {{ ($route == 'pricing') ? 'active':'' }}" href="{{ route('pricing') }}">PRICING & TIMING</a></li>
+                <li><a class="nav-link scrollto {{ ($route == 'booking.view') ? 'active':'' }}" href="{{ route('booking.view') }}">BOOKING CHART</a></li>
+                <li><a class="nav-link scrollto {{ ($route == 'booking.view') ? 'active':'' }}" href="{{route('user.logout')}}">LOGOUT</a></li>
                 @else
-                <li><a class="nav-link scrollto active" href="{{ route('welcome') }}">HOME</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('welcome') }}">PRICING & PROMO</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('welcome') }}">BOOKING CHART</a></li>
+                <li><a class="nav-link scrollto {{ ($route == 'pricing') ? 'active':'' }}" href="{{ route('pricing') }}">PRICING & TIMING</a></li>
+                <li> <a class="nav-link scrollto {{ ($route == 'booking.view') ? 'active':'' }}" href="{{ route('booking.view') }}">BOOKING CHART</a></li>
                 <li>
                     <a class="nav-link scrollto" href="{{ route('login') }}">LOGIN</a>
                 </li>
