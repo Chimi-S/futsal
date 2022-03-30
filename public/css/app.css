@@ -1138,15 +1138,19 @@ select {
 .m-2 {
 	margin: 0.5rem;
 }
-.m-3 {
-	margin: 0.75rem;
-}
 .m-0 {
 	margin: 0px;
+}
+.m-3 {
+	margin: 0.75rem;
 }
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.my-2 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 .my-0 {
 	margin-top: 0px;
@@ -1155,22 +1159,6 @@ select {
 .mx-5 {
 	margin-left: 1.25rem;
 	margin-right: 1.25rem;
-}
-.my-2 {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-.my-3 {
-	margin-top: 0.75rem;
-	margin-bottom: 0.75rem;
-}
-.my-4 {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-.my-auto {
-	margin-top: auto;
-	margin-bottom: auto;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1241,23 +1229,20 @@ select {
 .mb-4 {
 	margin-bottom: 1rem;
 }
-.mb-5 {
-	margin-bottom: 1.25rem;
-}
-.-mt-px {
-	margin-top: -1px;
-}
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
 .mb-0 {
 	margin-bottom: 0px;
 }
-.mr-auto {
-	margin-right: auto;
+.mb-5 {
+	margin-bottom: 1.25rem;
 }
-.ml-auto {
-	margin-left: auto;
+.-mt-px {
+	margin-top: -1px;
+}
+.mb-3 {
+	margin-bottom: 0.75rem;
 }
 .mr-0 {
 	margin-right: 0px;
@@ -1280,8 +1265,11 @@ select {
 .mb-1 {
 	margin-bottom: 0.25rem;
 }
-.mb-3 {
-	margin-bottom: 0.75rem;
+.mr-auto {
+	margin-right: auto;
+}
+.ml-auto {
+	margin-left: auto;
 }
 .block {
 	display: block;
@@ -1636,13 +1624,13 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
-.bg-blue-600 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
-}
 .bg-black {
 	--tw-bg-opacity: 1;
 	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+}
+.bg-blue-600 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
@@ -1671,12 +1659,6 @@ select {
 }
 .p-4 {
 	padding: 1rem;
-}
-.p-3 {
-	padding: 0.75rem;
-}
-.p-24 {
-	padding: 6rem;
 }
 .px-4 {
 	padding-left: 1rem;
@@ -1772,11 +1754,11 @@ select {
 .pb-1 {
 	padding-bottom: 0.25rem;
 }
-.pt-8 {
-	padding-top: 2rem;
-}
 .pl-2 {
 	padding-left: 0.5rem;
+}
+.pt-8 {
+	padding-top: 2rem;
 }
 .pb-0 {
 	padding-bottom: 0px;
