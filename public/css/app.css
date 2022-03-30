@@ -1250,6 +1250,12 @@ select {
 .mt-20 {
 	margin-top: 5rem;
 }
+.mr-auto {
+	margin-right: auto;
+}
+.ml-auto {
+	margin-left: auto;
+}
 .mb-20 {
 	margin-bottom: 5rem;
 }
@@ -1264,12 +1270,6 @@ select {
 }
 .mb-1 {
 	margin-bottom: 0.25rem;
-}
-.mr-auto {
-	margin-right: auto;
-}
-.ml-auto {
-	margin-left: auto;
 }
 .block {
 	display: block;
